@@ -65,7 +65,7 @@ class _SystemUsersViewState extends State<SystemUsersView> {
                 Stack(),
                 Container(
                   width: 73 * vw,
-                  height: 19.475 * vw + 37.4 * vw,
+                  height: 19.475 * vw + 53.9 * vw,
                   child: Stack(
                     children: [
                       Column(
@@ -213,7 +213,7 @@ class _SystemUsersViewState extends State<SystemUsersView> {
                         top: 19.475 * vw,
                         child: Container(
                           width: 73 * vw,
-                          height: 37.4 * vw,
+                          height: 53.9 * vw,
                           color: Color.fromRGBO(40, 40, 55, 1),
                         ),
                       ),
