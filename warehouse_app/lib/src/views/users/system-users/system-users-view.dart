@@ -141,6 +141,38 @@ class _SystemUsersViewState extends State<SystemUsersView> {
                                           ),
                                         ),
                                       ),
+                                      Container(
+                                        width: 22 * vw,
+                                        height: 3.3 * vw,
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 1 * vw),
+                                        decoration: BoxDecoration(
+                                          color:
+                                              Color.fromRGBO(245, 245, 255, 1),
+                                          borderRadius:
+                                              BorderRadius.circular(0.65 * vw),
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              'WAREHOUSE DEPARTMENT',
+                                              style: TextStyle(
+                                                fontSize: h1,
+                                                color: Color.fromRGBO(
+                                                    185, 185, 200, 1),
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                            Icon(
+                                              Icons.arrow_drop_down_rounded,
+                                              color: Color.fromRGBO(
+                                                  185, 185, 200, 1),
+                                            )
+                                          ],
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -182,13 +214,13 @@ class _SystemUsersViewState extends State<SystemUsersView> {
                         child: Container(
                           width: 73 * vw,
                           height: 37.4 * vw,
-                          color: Colors.blue,
+                          color: Color.fromRGBO(40, 40, 55, 1),
                         ),
                       ),
                       !areaOpen
                           ? Positioned(
-                              left: 25.5 * vw,
-                              right: 25.5 * vw,
+                              left: 51 * vw,
+                              right: 0 * vw,
                               top: 12.875 * vw,
                               child: GestureDetector(
                                 onTap: () {
@@ -211,7 +243,7 @@ class _SystemUsersViewState extends State<SystemUsersView> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'Choose Area',
+                                        'Choose Role',
                                         style: TextStyle(
                                           fontSize: h1,
                                           color: Color.fromRGBO(40, 40, 55, 1),
@@ -228,8 +260,8 @@ class _SystemUsersViewState extends State<SystemUsersView> {
                               ),
                             )
                           : Positioned(
-                              left: 25.5 * vw,
-                              right: 25.5 * vw,
+                              left: 51 * vw,
+                              right: 0 * vw,
                               top: 12.875 * vw,
                               child: GestureDetector(
                                 onTap: () {
