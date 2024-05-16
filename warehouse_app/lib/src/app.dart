@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:warehouse_app/src/views/home/homepage-view.dart';
-import 'package:warehouse_app/src/views/users/system-users/system-users-view.dart';
+import 'package:warehouse_app/src/views/home/homepage_view.dart';
+import 'package:warehouse_app/src/views/users/system-users/system_users_view.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
