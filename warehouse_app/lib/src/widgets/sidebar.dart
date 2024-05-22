@@ -282,7 +282,7 @@ class _SideBarState extends State<SideBar> {
                       color: (page == index)
                           ? Color.fromRGBO(92, 195, 152, 1)
                           : Color.fromRGBO(245, 245, 255, 1),
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w300,
                     ),
                   ),
                 ],

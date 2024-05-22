@@ -1,4 +1,4 @@
-class User{
+class User {
   late int id;
   late String name;
   late String lastname;
@@ -7,15 +7,14 @@ class User{
   late String username;
   late int role_id;
 
-  User({
-    int? id,
-    String? name,
-    String? lastname,
-    String? curp,
-    String? email,
-    String? username,
-    int? role_id
-  }){
+  User(
+      {int? id,
+      String? name,
+      String? lastname,
+      String? curp,
+      String? email,
+      String? username,
+      int? role_id}) {
     this.id = id ?? 0;
     this.name = name ?? '';
     this.lastname = lastname ?? '';
@@ -26,59 +25,53 @@ class User{
   }
 
   //Getters and Setters
-  int getId(){
+  int getId() {
     return this.id;
   }
 
-  String getName(){
+  String getName() {
     return this.name;
   }
 
-  String getLastname(){
+  String getLastname() {
     return this.lastname;
   }
 
-  String getCURP(){
+  String getCURP() {
     return this.curp;
   }
 
-  String getEmail(){
+  String getEmail() {
     return this.email;
   }
 
-  String getUsername(){
+  String getUsername() {
     return this.username;
   }
 
-  int getRole_id(){
+  int getRole_id() {
     return this.role_id;
   }
 
-  String getRole(){
+  String getRole() {
     List<String> roles = ['None', 'Local Admin', 'Editor', 'Receptionist'];
 
     return roles[this.role_id];
   }
 
-
   Future<List<User>> getAllUsers() async {
     List<User> users = [];
-    for(int i = 0; i < 10; i++){
-      users.add(
-        User(
-          id: i+1,
+    for (int i = 0; i < 15; i++) {
+      users.add(User(
+          id: i + 1,
           name: 'JOHN',
           lastname: 'DOE',
           curp: 'DOCJ011014HBSLSL01',
           email: 'john.doe@gmail.com',
           username: 'john.doe',
-          role_id: 1
-        )
-      );
+          role_id: 1));
     }
 
     return users;
   }
-
-  
 }

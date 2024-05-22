@@ -5,22 +5,28 @@ import 'package:warehouse_app/src/models/Formaters/LowerCaseFormater.dart';
 import 'package:warehouse_app/src/models/Formaters/UpperCaseFormater.dart';
 import 'package:warehouse_app/src/models/Themes/MyFont.dart';
 
-class Input{
+class Input {
   late TextEditingController controller;
-  late  String label;
-  late  int caracters;
-  late  RegExp regExp;
-  late  double width;
-  late  int caseType;
+  late String label;
+  late int caracters;
+  late RegExp regExp;
+  late double width;
+  late int caseType;
 
-  Input({required this.controller, required this.label, required this.caracters, required this.regExp, required this.width, required this.caseType});
+  Input(
+      {required this.controller,
+      required this.label,
+      required this.caracters,
+      required this.regExp,
+      required this.width,
+      required this.caseType});
 
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     double vw = Responsive(context).viewportWidth;
 
     return Container(
       width: width * vw,
-      height: 4.25* vw,
+      height: 4.25 * vw,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,6 +45,7 @@ class Input{
           Container(
             width: 22 * vw,
             height: 2.5 * vw,
+            padding: EdgeInsets.symmetric(horizontal: 1 * vw),
             alignment: Alignment.center,
             decoration: BoxDecoration(
                 color: Color.fromRGBO(235, 235, 245, 1),
@@ -50,40 +57,34 @@ class Input{
                 fontSize: MyFont(context).h2(),
                 fontWeight: FontWeight.w400,
               ),
-              inputFormatters:
-              (
-                (caseType == 0) ?  
-                  [
-                    FilteringTextInputFormatter.allow(regExp),
-                    LengthLimitingTextInputFormatter(caracters),
-                    LowerCaseTextFormatter(),
-                  ]
-                : (caseType == 1) ?
-                  [
-                    FilteringTextInputFormatter.allow(regExp),
-                    LengthLimitingTextInputFormatter(caracters),
-                    UpperCaseTextFormatter(),
-                  ]
-                :
-                  [
-                    FilteringTextInputFormatter.allow(regExp),
-                    LengthLimitingTextInputFormatter(caracters),
-                  ]
-                
-              ),
+              inputFormatters: ((caseType == 0)
+                  ? [
+                      FilteringTextInputFormatter.allow(regExp),
+                      LengthLimitingTextInputFormatter(caracters),
+                      LowerCaseTextFormatter(),
+                    ]
+                  : (caseType == 1)
+                      ? [
+                          FilteringTextInputFormatter.allow(regExp),
+                          LengthLimitingTextInputFormatter(caracters),
+                          UpperCaseTextFormatter(),
+                        ]
+                      : [
+                          FilteringTextInputFormatter.allow(regExp),
+                          LengthLimitingTextInputFormatter(caracters),
+                        ]),
+              cursorColor: Color.fromRGBO(125, 125, 140, 1),
               decoration: InputDecoration(
-                  hintText: label,
-                  //floatingLabelAlignment: FloatingLabelAlignment.center,
-                  hintStyle: TextStyle(
-                    color: Color.fromRGBO(125, 125, 140, 1),
-                    fontSize: MyFont(context).h2(),
-                    fontWeight: FontWeight.w400,
-                    height: 1.5
-                  ),
-                  enabledBorder: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                  //contentPadding: EdgeInsets.symmetric(
-                     // vertical: 0.2 * vw, horizontal: 1 * vw),
+                hintText: label,
+                //floatingLabelAlignment: FloatingLabelAlignment.center,
+                hintStyle: TextStyle(
+                  color: Color.fromRGBO(125, 125, 140, 1),
+                  fontSize: MyFont(context).h2(),
+                  fontWeight: FontWeight.w400,
+                  height: 1.85,
+                ),
+                enabledBorder: InputBorder.none,
+                focusedBorder: InputBorder.none,
               ),
             ),
           ),
@@ -91,5 +92,4 @@ class Input{
       ),
     );
   }
-    
 }
