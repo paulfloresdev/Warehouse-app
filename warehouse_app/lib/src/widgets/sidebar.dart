@@ -2,15 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hoverover/hoverover.dart';
+import 'package:warehouse_app/src/models/Auxiliars/Responsive.dart';
 
-import 'package:warehouse_app/src/models/Router.dart';
+import 'package:warehouse_app/src/models/Auxiliars/Router.dart';
+import 'package:warehouse_app/src/models/Themes/MyFont.dart';
 import 'package:warehouse_app/src/views/home/homepage_view.dart';
 import 'package:warehouse_app/src/views/users/system-users/system_users_view.dart';
 
 late int page;
 late int selected;
 late double vw;
-late double h1;
 int role = 1;
 
 class SideBar extends StatefulWidget {
@@ -26,18 +27,14 @@ class SideBar extends StatefulWidget {
 class _SideBarState extends State<SideBar> {
   @override
   Widget build(BuildContext context) {
-    // Obtén el tamaño de la pantalla usando MediaQuery
-    final Size screenSize = MediaQuery.of(context).size;
-    final double screenWidth = screenSize.width;
-    vw = screenWidth / 100;
-    h1 = 1.1 * vw;
+    vw = Responsive(context).viewportWidth;
 
     return Skeleton(context);
   }
 
   Widget Skeleton(BuildContext context) {
     return Container(
-      width: 20 * vw,
+      width: 15 * vw,
       height: double.infinity,
       decoration: BoxDecoration(
         color: Color.fromRGBO(40, 40, 55, 1),
@@ -139,7 +136,7 @@ class _SideBarState extends State<SideBar> {
       child: Row(
         children: [
           Container(
-            width: 15 * vw,
+            width: 10 * vw,
             height: double.infinity,
             decoration: BoxDecoration(),
             child: Column(
@@ -149,7 +146,7 @@ class _SideBarState extends State<SideBar> {
                 Text(
                   'Paul Flores',
                   style: TextStyle(
-                    fontSize: h1,
+                    fontSize: MyFont(context).h2(),
                     color: Color.fromRGBO(245, 245, 255, 1),
                     fontWeight: FontWeight.w200,
                   ),
@@ -157,7 +154,7 @@ class _SideBarState extends State<SideBar> {
                 Text(
                   "KEI La Paz BCS",
                   style: TextStyle(
-                    fontSize: h1,
+                    fontSize: MyFont(context).h2(),
                     color: Color.fromRGBO(245, 245, 255, 1),
                     fontWeight: FontWeight.w400,
                   ),
@@ -195,8 +192,8 @@ class _SideBarState extends State<SideBar> {
       return GestureDetector(
         onTap: () => (a != b) ? changeSelected(a) : action,
         child: Container(
-          width: 20 * vw,
-          height: 4.25 * vw,
+          width: 15 * vw,
+          height: 3 * vw,
           decoration: BoxDecoration(
             color: (isHovered || (inRange(a, b, page)))
                 ? Color.fromRGBO(55, 55, 70, 1)
@@ -207,7 +204,7 @@ class _SideBarState extends State<SideBar> {
               SizedBox(width: 0.125 * vw),
               Container(
                   width: 2.125 * vw,
-                  height: 4.25 * vw,
+                  height: 3 * vw,
                   child: (a == b)
                       ? null
                       : RotatedBox(
@@ -223,8 +220,8 @@ class _SideBarState extends State<SideBar> {
                           ),
                         )),
               Container(
-                width: 16.875 * vw,
-                height: 4.25 * vw,
+                width: 11.875 * vw,
+                height: 3 * vw,
                 padding: EdgeInsets.only(left: 0.25 * vw),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -233,7 +230,7 @@ class _SideBarState extends State<SideBar> {
                     Text(
                       label,
                       style: TextStyle(
-                        fontSize: h1,
+                        fontSize: MyFont(context).h2(),
                         color: Color.fromRGBO(245, 245, 255, 1),
                         fontWeight: FontWeight.w400,
                       ),
@@ -243,7 +240,7 @@ class _SideBarState extends State<SideBar> {
               ),
               Container(
                 width: 0.875 * vw,
-                height: 4.25 * vw,
+                height: 3 * vw,
                 color: inRange(a, b, page)
                     ? Color.fromRGBO(92, 195, 152, 1)
                     : null,
@@ -281,7 +278,7 @@ class _SideBarState extends State<SideBar> {
                   Text(
                     label,
                     style: TextStyle(
-                      fontSize: h1,
+                      fontSize: MyFont(context).h2(),
                       color: (page == index)
                           ? Color.fromRGBO(92, 195, 152, 1)
                           : Color.fromRGBO(245, 245, 255, 1),

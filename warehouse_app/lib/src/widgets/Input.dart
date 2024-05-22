@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:warehouse_app/src/models/LowerCaseFormater.dart';
-import 'package:warehouse_app/src/models/UpperCaseFormater.dart';
+import 'package:warehouse_app/src/models/Auxiliars/Responsive.dart';
+import 'package:warehouse_app/src/models/Formaters/LowerCaseFormater.dart';
+import 'package:warehouse_app/src/models/Formaters/UpperCaseFormater.dart';
+import 'package:warehouse_app/src/models/Themes/MyFont.dart';
 
 class Input{
   late TextEditingController controller;
@@ -14,16 +16,11 @@ class Input{
   Input({required this.controller, required this.label, required this.caracters, required this.regExp, required this.width, required this.caseType});
 
   Widget build(BuildContext context){
-    final Size screenSize = MediaQuery.of(context).size;
-    final double screenWidth = screenSize.width;
-    final double vw = screenWidth / 100;
-    final double h1 = 1.1 * vw;
-    final double h2 = 1.4 * vw;
-    final double h3 = 0.9*vw;
+    double vw = Responsive(context).viewportWidth;
 
     return Container(
       width: width * vw,
-      height: 5.25 * vw,
+      height: 4.25* vw,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,7 +30,7 @@ class Input{
             child: Text(
               label,
               style: TextStyle(
-                fontSize: h1,
+                fontSize: MyFont(context).h2(),
                 color: Color.fromRGBO(40, 40, 55, 1),
                 fontWeight: FontWeight.w400,
               ),
@@ -41,7 +38,8 @@ class Input{
           ),
           Container(
             width: 22 * vw,
-            height: 3.3 * vw,
+            height: 2.5 * vw,
+            alignment: Alignment.center,
             decoration: BoxDecoration(
                 color: Color.fromRGBO(235, 235, 245, 1),
                 borderRadius: BorderRadius.circular(0.65 * vw)),
@@ -49,7 +47,7 @@ class Input{
               controller: controller,
               style: TextStyle(
                 color: Color.fromRGBO(40, 40, 55, 1),
-                fontSize: h1,
+                fontSize: MyFont(context).h2(),
                 fontWeight: FontWeight.w400,
               ),
               inputFormatters:
@@ -73,19 +71,20 @@ class Input{
                   ]
                 
               ),
-                
-            
               decoration: InputDecoration(
                   hintText: label,
+                  //floatingLabelAlignment: FloatingLabelAlignment.center,
                   hintStyle: TextStyle(
                     color: Color.fromRGBO(125, 125, 140, 1),
-                    fontSize: h1,
+                    fontSize: MyFont(context).h2(),
                     fontWeight: FontWeight.w400,
+                    height: 1.5
                   ),
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(
-                      vertical: 0.65 * vw, horizontal: 1 * vw)),
+                  //contentPadding: EdgeInsets.symmetric(
+                     // vertical: 0.2 * vw, horizontal: 1 * vw),
+              ),
             ),
           ),
         ],

@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hoverover/hoverover.dart';
-import 'package:warehouse_app/src/models/LowerCaseFormater.dart';
-import 'package:warehouse_app/src/models/Router.dart';
-import 'package:warehouse_app/src/models/UpperCaseFormater.dart';
+import 'package:warehouse_app/src/models/Formaters/LowerCaseFormater.dart';
+import 'package:warehouse_app/src/models/Role.dart';
+import 'package:warehouse_app/src/models/Auxiliars/Router.dart';
+import 'package:warehouse_app/src/models/Formaters/UpperCaseFormater.dart';
+import 'package:warehouse_app/src/models/Themes/MyFont.dart';
 import 'package:warehouse_app/src/models/User.dart';
 import 'package:warehouse_app/src/views/users/system-users/edit_users_view.dart';
+import 'package:warehouse_app/src/widgets/Combobox.dart';
+import 'package:warehouse_app/src/widgets/Input.dart';
 import 'package:warehouse_app/src/widgets/sidebar.dart';
 
 late double vw;
 late double h1;
 late double h2;
 late double h3;
-int area = 0;
-bool roleOpen = false;
-List<String> roles = ['All','Admin','Editor','Receptionist'];
-String role = 'Choose Role';
+
+
+
 
 
 class SystemUsersView extends StatefulWidget {
@@ -30,6 +33,8 @@ class _SystemUsersViewState extends State<SystemUsersView> {
   late var lastnameController;
   late var curpController;
   late var usernameController;
+  late Role role;
+  late bool roleOpen;
 
   @override
   void initState() {
@@ -39,6 +44,8 @@ class _SystemUsersViewState extends State<SystemUsersView> {
     lastnameController = TextEditingController();
     curpController = TextEditingController();
     usernameController = TextEditingController();
+    role = Role(id: 0, name: 'Choose Role');
+    roleOpen = false;
   }
 
   @override
@@ -68,7 +75,7 @@ class _SystemUsersViewState extends State<SystemUsersView> {
           Container(
             width: 80 * vw,
             height: double.infinity,
-            
+            color: Color.fromRGBO(250, 250, 255, 1),
             child: ListView(
               children: [
                 Container(
@@ -86,7 +93,7 @@ class _SystemUsersViewState extends State<SystemUsersView> {
                               Text(
                                 "System Users",
                                 style: TextStyle(
-                                  fontSize: h2,
+                                  fontSize: MyFont(context).h3(),
                                   color: Color.fromRGBO(40, 40, 55, 1),
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -149,7 +156,7 @@ class _SystemUsersViewState extends State<SystemUsersView> {
                                   regExp: RegExp(r'[A-Za-z ]'),
                                   width: 22,
                                   caseType: 1,
-                                ),
+                                ).build(context),
                                 Input(
                                   controller: lastnameController,
                                   label: 'Lastname',
@@ -157,7 +164,7 @@ class _SystemUsersViewState extends State<SystemUsersView> {
                                   regExp: RegExp(r'[A-Za-z ]'),
                                   width: 22,
                                   caseType: 1,
-                                ),
+                                ).build(context),
                                 Input(
                                   controller: curpController,
                                   label: 'CURP',
@@ -165,7 +172,7 @@ class _SystemUsersViewState extends State<SystemUsersView> {
                                   regExp: RegExp(r'[A-Za-z0-9 ]'),
                                   width: 22,
                                   caseType: 1,
-                                ),
+                                ).build(context),
                               ],
                             ),
                           ),
@@ -183,7 +190,7 @@ class _SystemUsersViewState extends State<SystemUsersView> {
                                   regExp: RegExp(r'[A-Za-z0-9.@_ ]'),
                                   width: 19.8,
                                   caseType: 0,
-                                ),
+                                ).build(context),
                                 Container(
                                   width: 19.8 * vw,
                                   height: 5.25 * vw,
@@ -452,114 +459,22 @@ class _SystemUsersViewState extends State<SystemUsersView> {
                           ),
                         ),
                       ),
-                      !roleOpen
-                          ? Positioned(
-                              left: 46.2 * vw,
-                              right: 6.6 * vw,
-                              top: 14.25 * vw,
-                              child: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    roleOpen = !roleOpen;
-                                  });
-                                },
-                                child: Container(
-                                  width: 19.8 * vw,
-                                  height: 3.3 * vw,
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 1 * vw),
-                                  decoration: BoxDecoration(
-                                    color: Color.fromRGBO(235, 235, 245, 1),
-                                    borderRadius:
-                                        BorderRadius.circular(0.65 * vw),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        role,
-                                        style: TextStyle(
-                                          fontSize: h1,
-                                          color: Color.fromRGBO(40, 40, 55, 1),
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                      Icon(
-                                        Icons.arrow_drop_down_rounded,
-                                        color: Color.fromRGBO(40, 40, 55, 1),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            )
-                          : Positioned(
-                              left: 46.2 * vw,
-                              right: 6.6 * vw,
-                              top: 14.25 * vw,
-                              child: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    roleOpen = !roleOpen;
-                                  });
-                                },
-                                child: Container(
-                                  width: 19.8 * vw,
-                                  height: 3.3 * vw * roles.length,
-                                  decoration: BoxDecoration(
-                                    color: Color.fromRGBO(235, 235, 245, 1),
-                                    borderRadius:
-                                        BorderRadius.circular(0.65 * vw),
-                                  ),
-                                  child: ListView.builder(
-                                    itemCount: roles.length,
-                                    itemBuilder: (context, index){
-                                    return HoverOver(builder: (hovered){
-                                      return GestureDetector(
-                                        onTap: () {
-                                          setState(() {
-                                            role = roles[index];
-                                            roleOpen = !roleOpen;
-                                          });
-                                        },
-                                        child: Container(
-                                          width: 19.8 * vw,
-                                          height: 3.3 * vw,
-                                          padding:
-                                            EdgeInsets.symmetric(horizontal: 1 * vw),
-                                          decoration: BoxDecoration(
-                                            color: (hovered) ? Color.fromRGBO(205, 205, 215, 1):
-                                              Color.fromRGBO(235, 235, 245, 1),
-                                            borderRadius: BorderRadius.only(
-                                              topLeft: (index == 0) ? Radius.circular(0.65*vw) : Radius.circular(0),
-                                              topRight: (index == 0) ? Radius.circular(0.65*vw) : Radius.circular(0),
-                                              bottomLeft: (index == roles.length - 1) ? Radius.circular(0.65*vw) : Radius.circular(0),
-                                              bottomRight: (index == roles.length - 1) ? Radius.circular(0.65*vw) : Radius.circular(0),
-                                            )
-                                          ),
-                                          child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                roles[index],
-                                                style: TextStyle(
-                                                  fontSize: h1,
-                                                  color: Color.fromRGBO(40, 40, 55, 1),
-                                                  fontWeight: FontWeight.w400,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      );
-                                    });
-                                    
-                                  })
-                                ),
-                              ),
-                            ),
+                      Combobox(
+                        width: 19.8,
+                        height: 3.3,
+                        left: 46.2,
+                        right: 6.6,
+                        top: 14.25,
+                        method: (role_value, open_value){
+                          setState(() {
+                            role = role_value;
+                            roleOpen = open_value;
+                          });
+                        }, 
+                        open: roleOpen, 
+                        future: Role().getAllRoles(), 
+                        current_role: role,
+                      ).build(context),
                     ],
                   ),
                 ),
@@ -724,83 +639,5 @@ class _SystemUsersViewState extends State<SystemUsersView> {
     );
   }
 
-  Widget Input({
-    required TextEditingController controller,
-    required String label,
-    required int caracters,
-    required RegExp regExp,
-    required double width,
-    required int caseType
-  }) {
-    return Container(
-      width: width * vw,
-      height: 5.25 * vw,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.only(left: 0.5 * vw),
-            child: Text(
-              label,
-              style: TextStyle(
-                fontSize: h1,
-                color: Color.fromRGBO(40, 40, 55, 1),
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-          ),
-          Container(
-            width: 22 * vw,
-            height: 3.3 * vw,
-            decoration: BoxDecoration(
-                color: Color.fromRGBO(235, 235, 245, 1),
-                borderRadius: BorderRadius.circular(0.65 * vw)),
-            child: TextFormField(
-              controller: controller,
-              style: TextStyle(
-                color: Color.fromRGBO(40, 40, 55, 1),
-                fontSize: h1,
-                fontWeight: FontWeight.w400,
-              ),
-              inputFormatters:
-              (
-                (caseType == 0) ?  
-                  [
-                    FilteringTextInputFormatter.allow(regExp),
-                    LengthLimitingTextInputFormatter(caracters),
-                    LowerCaseTextFormatter(),
-                  ]
-                : (caseType == 1) ?
-                  [
-                    FilteringTextInputFormatter.allow(regExp),
-                    LengthLimitingTextInputFormatter(caracters),
-                    UpperCaseTextFormatter(),
-                  ]
-                :
-                  [
-                    FilteringTextInputFormatter.allow(regExp),
-                    LengthLimitingTextInputFormatter(caracters),
-                  ]
-                
-              ),
-                
-            
-              decoration: InputDecoration(
-                  hintText: label,
-                  hintStyle: TextStyle(
-                    color: Color.fromRGBO(125, 125, 140, 1),
-                    fontSize: h1,
-                    fontWeight: FontWeight.w400,
-                  ),
-                  enabledBorder: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(
-                      vertical: 0.65 * vw, horizontal: 1 * vw)),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  
 }

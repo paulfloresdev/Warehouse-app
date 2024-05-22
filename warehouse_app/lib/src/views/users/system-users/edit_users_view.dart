@@ -11,7 +11,6 @@ late double h1;
 late double h2;
 late double h3;
 int area = 0;
-bool roleOpen = false;
 List<String> roles = ['All','Admin','Editor','Receptionist'];
 String role = 'Choose Role';
 late User user;
@@ -37,6 +36,8 @@ class _EditUsersViewState extends State<EditUsersView> {
   late var emailController;
   late var passwordController;
   late var confirmPasswordController;
+  late Role role;
+  late bool roleOpen;
 
   @override
   void initState() {
@@ -49,6 +50,8 @@ class _EditUsersViewState extends State<EditUsersView> {
     emailController = TextEditingController();
     passwordController = TextEditingController();
     confirmPasswordController = TextEditingController();
+    role = Role(id: 0, name: 'Choose Role');
+    roleOpen = false;
   }
 
   @override
@@ -111,6 +114,10 @@ class _EditUsersViewState extends State<EditUsersView> {
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
+                              Container(
+                                 width: 16.5*vw,
+                                  height: 3.3*vw,
+                              )
                               
                             ],
                           ),
@@ -119,7 +126,7 @@ class _EditUsersViewState extends State<EditUsersView> {
                             width: 73 * vw,
                             height: 5.25 * vw,
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Input(
                                   controller: nameController,
@@ -149,18 +156,27 @@ class _EditUsersViewState extends State<EditUsersView> {
                             ),
                           ),
                           SizedBox(height: 2 * vw),
-                          Text(tester),
-                          SizedBox(height: 2 * vw),
-                          Combobox(
-                            method: (param) {
-                              setState(() {
-                                tester = param;
-                              });
-                            },
-                          ).build(context),
+                          
+                          
                           
                         ],
-                      )
+                      ),
+                      Combobox(
+                        width: 19.8,
+                        height: 3.3,
+                        left: 46.2,
+                        right: 6.6,
+                        top: 14.25,
+                        method: (role_value, open_value){
+                          setState(() {
+                            role = role_value;
+                            roleOpen = open_value;
+                          });
+                        }, 
+                        open: roleOpen, 
+                        future: Role().getAllRoles(), 
+                        current_role: role,
+                      ).build(context),
                     ],
                   ),
                 ),

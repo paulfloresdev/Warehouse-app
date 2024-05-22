@@ -18,6 +18,7 @@ class Role{
 
   Future<List<Role>> getAllRoles() async{
     List<Role> roles = [
+      Role(id: 0, name: 'All'),
       Role(id: 1, name: 'Local Admin'),
       Role(id: 2, name: 'Edit'),
       Role(id: 3, name: 'Receptionist'),
