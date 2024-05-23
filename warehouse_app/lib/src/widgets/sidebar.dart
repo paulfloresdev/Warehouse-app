@@ -7,7 +7,7 @@ import 'package:warehouse_app/src/models/Auxiliars/Responsive.dart';
 import 'package:warehouse_app/src/models/Auxiliars/Router.dart';
 import 'package:warehouse_app/src/models/Themes/MyFont.dart';
 import 'package:warehouse_app/src/views/home/homepage_view.dart';
-import 'package:warehouse_app/src/views/users/system-users/system_users_view.dart';
+import 'package:warehouse_app/src/views/users/users_view.dart';
 
 late int page;
 late int selected;
@@ -46,7 +46,12 @@ class _SideBarState extends State<SideBar> {
               ? Column(
                   children: [
                     option(a: 0, b: 0, label: 'Home'),
-                    option(a: 1, b: 4, label: 'Assets'),
+                    option(
+                      a: 1,
+                      b: 4,
+                      label: 'Assets',
+                      action: () => changeSelected(1),
+                    ),
                     suboption(
                         index: 1,
                         a: 1,
@@ -71,7 +76,12 @@ class _SideBarState extends State<SideBar> {
                         b: 4,
                         label: 'Boxes',
                         destination: HomePageView()),
-                    option(a: 5, b: 8, label: 'Consumables'),
+                    option(
+                      a: 5,
+                      b: 8,
+                      label: 'Consumables',
+                      action: () => changeSelected(5),
+                    ),
                     suboption(
                         index: 5,
                         a: 5,
@@ -100,28 +110,19 @@ class _SideBarState extends State<SideBar> {
                 )
               : Container(),
           (role == 1)
-              ? Column(
-                  children: [
-                    option(a: 9, b: 10, label: 'Users'),
-                    suboption(
-                        index: 9,
-                        a: 9,
-                        b: 10,
-                        label: 'System Users',
-                        destination: SystemUsersView()),
-                    suboption(
-                        index: 10,
-                        a: 9,
-                        b: 10,
-                        label: 'Employees',
-                        destination: HomePageView()),
-                  ],
+              ? option(
+                  a: 9,
+                  b: 9,
+                  label: 'Users',
+                  action: () => Routes(context).goTo(
+                    UsersView(),
+                  ),
                 )
               : Container(),
           (role != 4)
-              ? option(a: 11, b: 11, label: 'Assignations')
+              ? option(a: 10, b: 10, label: 'Assignations')
               : Container(),
-          option(a: 12, b: 12, label: 'Out Passes'),
+          option(a: 11, b: 11, label: 'Out Passes'),
         ],
       ),
     );
@@ -190,7 +191,7 @@ class _SideBarState extends State<SideBar> {
       Function()? action}) {
     return HoverOver(builder: (isHovered) {
       return GestureDetector(
-        onTap: () => (a != b) ? changeSelected(a) : action,
+        onTap: action,
         child: Container(
           width: 15 * vw,
           height: 3 * vw,
@@ -266,7 +267,7 @@ class _SideBarState extends State<SideBar> {
             onTap: () => Routes(context).goTo(destination),
             child: Container(
               width: double.maxFinite,
-              height: 4.25 * vw,
+              height: 3 * vw,
               padding: EdgeInsets.only(left: 3.5 * vw),
               color: (isHovered)
                   ? Color.fromRGBO(55, 55, 70, 1)

@@ -1,3 +1,6 @@
+import 'package:warehouse_app/src/models/Area.dart';
+import 'package:warehouse_app/src/models/Role.dart';
+
 class User {
   late int id;
   late String name;
@@ -5,23 +8,27 @@ class User {
   late String curp;
   late String email;
   late String username;
-  late int role_id;
+  late Role role;
+  late Area area;
 
-  User(
-      {int? id,
-      String? name,
-      String? lastname,
-      String? curp,
-      String? email,
-      String? username,
-      int? role_id}) {
+  User({
+    int? id,
+    String? name,
+    String? lastname,
+    String? curp,
+    String? email,
+    String? username,
+    Role? role,
+    Area? area,
+  }) {
     this.id = id ?? 0;
     this.name = name ?? '';
     this.lastname = lastname ?? '';
     this.curp = curp ?? '';
     this.email = email ?? '';
     this.username = username ?? '';
-    this.role_id = role_id ?? 0;
+    this.role = role ?? Role(id: 0, name: 'Undefined role');
+    this.area = area ?? Area(id: 0, name: 'Undefined area');
   }
 
   //Getters and Setters
@@ -49,27 +56,40 @@ class User {
     return this.username;
   }
 
-  int getRole_id() {
-    return this.role_id;
+  Role getRole() {
+    return role;
   }
 
-  String getRole() {
-    List<String> roles = ['None', 'Local Admin', 'Editor', 'Receptionist'];
-
-    return roles[this.role_id];
+  Area getArea() {
+    return area;
   }
+
+  User get one => User(
+        id: 1,
+        name: 'JOHN',
+        lastname: 'DOE',
+        curp: 'DOCJ011014HBSLSL01',
+        email: 'john.doe@gmail.com',
+        username: 'john.doe',
+        role: Role(id: 1, name: 'Admin'),
+        area: Area(id: 9, name: 'Warehouse'),
+      );
 
   Future<List<User>> getAllUsers() async {
     List<User> users = [];
     for (int i = 0; i < 15; i++) {
-      users.add(User(
+      users.add(
+        User(
           id: i + 1,
           name: 'JOHN',
           lastname: 'DOE',
           curp: 'DOCJ011014HBSLSL01',
           email: 'john.doe@gmail.com',
           username: 'john.doe',
-          role_id: 1));
+          role: Role(id: 1, name: 'Admin'),
+          area: Area(id: 9, name: 'Warehouse'),
+        ),
+      );
     }
 
     return users;

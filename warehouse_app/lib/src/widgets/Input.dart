@@ -12,14 +12,17 @@ class Input {
   late RegExp regExp;
   late double width;
   late int caseType;
+  late TextInputType keyboardType;
 
-  Input(
-      {required this.controller,
-      required this.label,
-      required this.caracters,
-      required this.regExp,
-      required this.width,
-      required this.caseType});
+  Input({
+    required this.controller,
+    required this.label,
+    required this.caracters,
+    required this.regExp,
+    required this.width,
+    required this.caseType,
+    required this.keyboardType,
+  });
 
   Widget build(BuildContext context) {
     double vw = Responsive(context).viewportWidth;
@@ -43,15 +46,16 @@ class Input {
             ),
           ),
           Container(
-            width: 22 * vw,
+            width: width * vw,
             height: 2.5 * vw,
-            padding: EdgeInsets.symmetric(horizontal: 1 * vw),
             alignment: Alignment.center,
             decoration: BoxDecoration(
-                color: Color.fromRGBO(235, 235, 245, 1),
-                borderRadius: BorderRadius.circular(0.65 * vw)),
+              color: Color.fromRGBO(235, 235, 245, 1),
+              borderRadius: BorderRadius.circular(0.65 * vw),
+            ),
             child: TextFormField(
               controller: controller,
+              keyboardType: keyboardType,
               style: TextStyle(
                 color: Color.fromRGBO(40, 40, 55, 1),
                 fontSize: MyFont(context).h2(),
@@ -75,17 +79,29 @@ class Input {
                         ]),
               cursorColor: Color.fromRGBO(125, 125, 140, 1),
               decoration: InputDecoration(
-                hintText: label,
-                //floatingLabelAlignment: FloatingLabelAlignment.center,
-                hintStyle: TextStyle(
-                  color: Color.fromRGBO(125, 125, 140, 1),
-                  fontSize: MyFont(context).h2(),
-                  fontWeight: FontWeight.w400,
-                  height: 1.85,
-                ),
-                enabledBorder: InputBorder.none,
-                focusedBorder: InputBorder.none,
-              ),
+                  hintText: label,
+                  hintStyle: TextStyle(
+                    color: Color.fromRGBO(125, 125, 140, 1),
+                    fontSize: MyFont(context).h2(),
+                    fontWeight: FontWeight.w400,
+                    //height: 1.85,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(0.65 * vw),
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                        width: 0.1 * vw,
+                      )),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(0.65 * vw),
+                      borderSide: BorderSide(
+                        color: Color.fromRGBO(215, 215, 225, 1),
+                        width: 0.1 * vw,
+                      )),
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: 0.75 * vw,
+                    horizontal: 1 * vw,
+                  )),
             ),
           ),
         ],

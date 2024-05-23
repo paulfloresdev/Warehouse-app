@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:warehouse_app/src/views/users/system-users/system_users_view.dart';
+import 'package:warehouse_app/src/models/User.dart';
+import 'package:warehouse_app/src/views/users/edit_users_view.dart';
+import 'package:warehouse_app/src/views/users/users_view.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
           fontFamily: 'Inter'),
-      home: SystemUsersView(),
+      home: EditUsersView(user_: User().one),
     );
   }
 }
