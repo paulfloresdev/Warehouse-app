@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
           fontFamily: 'Inter'),
-      home: EditUsersView(user_: User().one),
+      home: UsersView(), //EditUsersView(user_: User().one),
     );
   }
 }

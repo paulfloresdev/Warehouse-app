@@ -149,42 +149,42 @@ class _UsersViewState extends State<UsersView> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Input(
-                                        controller: nameController,
-                                        label: 'Name',
-                                        caracters: 24,
-                                        regExp: RegExp(r'[A-Za-z ]'),
-                                        width: 18.5,
-                                        caseType: 1,
-                                        keyboardType: TextInputType.name)
-                                    .build(context),
-                                Input(
-                                        controller: lastnameController,
-                                        label: 'Lastname',
-                                        caracters: 16,
-                                        regExp: RegExp(r'[A-Za-z ]'),
-                                        width: 18.5,
-                                        caseType: 1,
-                                        keyboardType: TextInputType.name)
-                                    .build(context),
-                                Input(
-                                        controller: curpController,
-                                        label: 'CURP',
-                                        caracters: 18,
-                                        regExp: RegExp(r'[A-Za-z0-9 ]'),
-                                        width: 18.5,
-                                        caseType: 1,
-                                        keyboardType: TextInputType.text)
-                                    .build(context),
-                                Input(
-                                        controller: usernameController,
-                                        label: 'Username',
-                                        caracters: 24,
-                                        regExp: RegExp(r'[A-Za-z0-9.@_ ]'),
-                                        width: 18.5,
-                                        caseType: 0,
-                                        keyboardType: TextInputType.text)
-                                    .build(context),
+                                Input(context).text(
+                                  controller: nameController,
+                                  label: 'Name',
+                                  caracters: 24,
+                                  regExp: RegExp(r'[A-Za-z ]'),
+                                  width: 18.5,
+                                  caseType: 1,
+                                  keyboardType: TextInputType.name,
+                                ),
+                                Input(context).text(
+                                  controller: lastnameController,
+                                  label: 'Lastname',
+                                  caracters: 16,
+                                  regExp: RegExp(r'[A-Za-z ]'),
+                                  width: 18.5,
+                                  caseType: 1,
+                                  keyboardType: TextInputType.name,
+                                ),
+                                Input(context).text(
+                                  controller: curpController,
+                                  label: 'CURP',
+                                  caracters: 18,
+                                  regExp: RegExp(r'[A-Za-z0-9 ]'),
+                                  width: 18.5,
+                                  caseType: 1,
+                                  keyboardType: TextInputType.text,
+                                ),
+                                Input(context).text(
+                                  controller: usernameController,
+                                  label: 'Username',
+                                  caracters: 24,
+                                  regExp: RegExp(r'[A-Za-z0-9.@_ ]'),
+                                  width: 18.5,
+                                  caseType: 0,
+                                  keyboardType: TextInputType.text,
+                                ),
                               ],
                             ),
                           ),
@@ -195,16 +195,15 @@ class _UsersViewState extends State<UsersView> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Input(
-                                        controller: emailController,
-                                        label: 'Email',
-                                        caracters: 48,
-                                        regExp: RegExp(r'[A-Za-z0-9@._]'),
-                                        width: 18.5,
-                                        caseType: 0,
-                                        keyboardType:
-                                            TextInputType.emailAddress)
-                                    .build(context),
+                                Input(context).text(
+                                  controller: emailController,
+                                  label: 'Email',
+                                  caracters: 48,
+                                  regExp: RegExp(r'[A-Za-z0-9@._]'),
+                                  width: 18.5,
+                                  caseType: 0,
+                                  keyboardType: TextInputType.emailAddress,
+                                ),
                               ],
                             ),
                           ),
@@ -229,271 +228,324 @@ class _UsersViewState extends State<UsersView> {
                                   return CircularProgressIndicator();
                                 }
                                 List<User> users = snapshot.data!;
-                                return Container(
-                                  width: 80 * vw,
-                                  height: 57.1 * vw,
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        width: 80 * vw,
-                                        height:
-                                            (2.7 + (2.1 * users.length)) * vw,
-                                        child: ListView(
-                                          scrollDirection: Axis.horizontal,
-                                          physics: ScrollPhysics(),
-                                          children: [
-                                            Column(
+                                return Column(
+                                  children: [
+                                    Container(
+                                      width: 80 * vw,
+                                      height: 34.2 * vw,
+                                      clipBehavior: Clip.hardEdge,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(0.65 * vw)),
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            width: 80 * vw,
+                                            height:
+                                                (2.7 + (2.1 * users.length)) *
+                                                    vw,
+                                            child: ListView(
+                                              scrollDirection: Axis.horizontal,
+                                              physics: ScrollPhysics(),
                                               children: [
-                                                Container(
-                                                  width: 108.2 * vw,
-                                                  height: 2.7 * vw,
-                                                  padding:
-                                                      EdgeInsets.all(0.1 * vw),
-                                                  decoration: BoxDecoration(
-                                                    color: Color.fromRGBO(
-                                                        230, 230, 245, 1),
-                                                    borderRadius:
-                                                        BorderRadius.vertical(
-                                                            top:
-                                                                Radius.circular(
-                                                                    0.65 * vw)),
-                                                  ),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      //79.3
-                                                      UserTable(context)
-                                                          .textRow(
-                                                        size: Size(8, 2.5),
-                                                        rowAlignment:
-                                                            RowAlignment(
-                                                                    context)
-                                                                .topLeft,
+                                                Column(
+                                                  children: [
+                                                    Container(
+                                                      width: 108.2 * vw,
+                                                      height: 2.7 * vw,
+                                                      padding: EdgeInsets.all(
+                                                          0.1 * vw),
+                                                      decoration: BoxDecoration(
                                                         color: Color.fromRGBO(
-                                                            235, 235, 245, 1),
-                                                        textStyle:
-                                                            UserTable(context)
-                                                                .header,
-                                                        label: '',
+                                                            230, 230, 245, 1),
+                                                        borderRadius:
+                                                            BorderRadius.vertical(
+                                                                top: Radius
+                                                                    .circular(
+                                                                        0.65 *
+                                                                            vw)),
                                                       ),
-                                                      UserTable(context)
-                                                          .textRow(
-                                                        size: Size(18, 2.5),
-                                                        rowAlignment:
-                                                            RowAlignment(
-                                                                    context)
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
                                                                 .center,
-                                                        color: Color.fromRGBO(
-                                                            235, 235, 245, 1),
-                                                        textStyle:
-                                                            UserTable(context)
-                                                                .header,
-                                                        label: 'Name',
-                                                      ),
-                                                      //61.3
-                                                      UserTable(context)
-                                                          .textRow(
-                                                        size: Size(14.3, 2.5),
-                                                        rowAlignment:
-                                                            RowAlignment(
-                                                                    context)
-                                                                .center,
-                                                        color: Color.fromRGBO(
-                                                            235, 235, 245, 1),
-                                                        textStyle:
-                                                            UserTable(context)
-                                                                .header,
-                                                        label: 'Lastname',
-                                                      ),
-                                                      //47
-                                                      UserTable(context)
-                                                          .textRow(
-                                                        size: Size(14, 2.5),
-                                                        rowAlignment:
-                                                            RowAlignment(
-                                                                    context)
-                                                                .center,
-                                                        color: Color.fromRGBO(
-                                                            235, 235, 245, 1),
-                                                        textStyle:
-                                                            UserTable(context)
-                                                                .header,
-                                                        label: 'Area',
-                                                      ),
-                                                      UserTable(context)
-                                                          .textRow(
-                                                        size: Size(9, 2.5),
-                                                        rowAlignment:
-                                                            RowAlignment(
-                                                                    context)
-                                                                .center,
-                                                        color: Color.fromRGBO(
-                                                            235, 235, 245, 1),
-                                                        textStyle:
-                                                            UserTable(context)
-                                                                .header,
-                                                        label: 'Role',
-                                                      ),
-                                                      //38
-                                                      UserTable(context)
-                                                          .textRow(
-                                                        size: Size(16, 2.5),
-                                                        rowAlignment:
-                                                            RowAlignment(
-                                                                    context)
-                                                                .center,
-                                                        color: Color.fromRGBO(
-                                                            235, 235, 245, 1),
-                                                        textStyle:
-                                                            UserTable(context)
-                                                                .header,
-                                                        label: 'CURP',
-                                                      ),
-                                                      //22
-                                                      UserTable(context)
-                                                          .textRow(
-                                                        size: Size(14, 2.5),
-                                                        rowAlignment:
-                                                            RowAlignment(
-                                                                    context)
-                                                                .topRight,
-                                                        color: Color.fromRGBO(
-                                                            235, 235, 245, 1),
-                                                        textStyle:
-                                                            UserTable(context)
-                                                                .header,
-                                                        label: 'Email',
-                                                      ),
-                                                      UserTable(context)
-                                                          .textRow(
-                                                        size: Size(14, 2.5),
-                                                        rowAlignment:
-                                                            RowAlignment(
-                                                                    context)
-                                                                .topRight,
-                                                        color: Color.fromRGBO(
-                                                            235, 235, 245, 1),
-                                                        textStyle:
-                                                            UserTable(context)
-                                                                .header,
-                                                        label: 'Username',
-                                                      ),
-                                                      //8
+                                                        children: [
+                                                          //79.3
+                                                          UserTable(context)
+                                                              .textRow(
+                                                            size: Size(8, 2.5),
+                                                            rowAlignment:
+                                                                RowAlignment(
+                                                                        context)
+                                                                    .topLeft,
+                                                            color:
+                                                                Color.fromRGBO(
+                                                                    235,
+                                                                    235,
+                                                                    245,
+                                                                    1),
+                                                            textStyle:
+                                                                UserTable(
+                                                                        context)
+                                                                    .header,
+                                                            label: '',
+                                                          ),
+                                                          UserTable(context)
+                                                              .textRow(
+                                                            size: Size(18, 2.5),
+                                                            rowAlignment:
+                                                                RowAlignment(
+                                                                        context)
+                                                                    .center,
+                                                            color:
+                                                                Color.fromRGBO(
+                                                                    235,
+                                                                    235,
+                                                                    245,
+                                                                    1),
+                                                            textStyle:
+                                                                UserTable(
+                                                                        context)
+                                                                    .header,
+                                                            label: 'Name',
+                                                          ),
+                                                          //61.3
+                                                          UserTable(context)
+                                                              .textRow(
+                                                            size:
+                                                                Size(14.3, 2.5),
+                                                            rowAlignment:
+                                                                RowAlignment(
+                                                                        context)
+                                                                    .center,
+                                                            color:
+                                                                Color.fromRGBO(
+                                                                    235,
+                                                                    235,
+                                                                    245,
+                                                                    1),
+                                                            textStyle:
+                                                                UserTable(
+                                                                        context)
+                                                                    .header,
+                                                            label: 'Lastname',
+                                                          ),
+                                                          //47
+                                                          UserTable(context)
+                                                              .textRow(
+                                                            size: Size(14, 2.5),
+                                                            rowAlignment:
+                                                                RowAlignment(
+                                                                        context)
+                                                                    .center,
+                                                            color:
+                                                                Color.fromRGBO(
+                                                                    235,
+                                                                    235,
+                                                                    245,
+                                                                    1),
+                                                            textStyle:
+                                                                UserTable(
+                                                                        context)
+                                                                    .header,
+                                                            label: 'Area',
+                                                          ),
+                                                          UserTable(context)
+                                                              .textRow(
+                                                            size: Size(9, 2.5),
+                                                            rowAlignment:
+                                                                RowAlignment(
+                                                                        context)
+                                                                    .center,
+                                                            color:
+                                                                Color.fromRGBO(
+                                                                    235,
+                                                                    235,
+                                                                    245,
+                                                                    1),
+                                                            textStyle:
+                                                                UserTable(
+                                                                        context)
+                                                                    .header,
+                                                            label: 'Role',
+                                                          ),
+                                                          //38
+                                                          UserTable(context)
+                                                              .textRow(
+                                                            size: Size(16, 2.5),
+                                                            rowAlignment:
+                                                                RowAlignment(
+                                                                        context)
+                                                                    .center,
+                                                            color:
+                                                                Color.fromRGBO(
+                                                                    235,
+                                                                    235,
+                                                                    245,
+                                                                    1),
+                                                            textStyle:
+                                                                UserTable(
+                                                                        context)
+                                                                    .header,
+                                                            label: 'CURP',
+                                                          ),
+                                                          //22
+                                                          UserTable(context)
+                                                              .textRow(
+                                                            size: Size(14, 2.5),
+                                                            rowAlignment:
+                                                                RowAlignment(
+                                                                        context)
+                                                                    .topRight,
+                                                            color:
+                                                                Color.fromRGBO(
+                                                                    235,
+                                                                    235,
+                                                                    245,
+                                                                    1),
+                                                            textStyle:
+                                                                UserTable(
+                                                                        context)
+                                                                    .header,
+                                                            label: 'Email',
+                                                          ),
+                                                          UserTable(context)
+                                                              .textRow(
+                                                            size: Size(14, 2.5),
+                                                            rowAlignment:
+                                                                RowAlignment(
+                                                                        context)
+                                                                    .topRight,
+                                                            color:
+                                                                Color.fromRGBO(
+                                                                    235,
+                                                                    235,
+                                                                    245,
+                                                                    1),
+                                                            textStyle:
+                                                                UserTable(
+                                                                        context)
+                                                                    .header,
+                                                            label: 'Username',
+                                                          ),
+                                                          //8
 
-                                                      //0
-                                                    ],
-                                                  ),
-                                                ),
-                                                Container(
-                                                  width: 108.2 * vw,
-                                                  height:
-                                                      2.1 * vw * users.length,
-                                                  decoration: BoxDecoration(
-                                                    color: Color.fromRGBO(
-                                                        230, 230, 245, 1),
-                                                    borderRadius:
-                                                        BorderRadius.vertical(
-                                                            bottom:
-                                                                Radius.circular(
-                                                                    0.5 * vw)),
-                                                  ),
-                                                  child: ListView.builder(
-                                                      itemCount: users.length,
-                                                      itemBuilder:
-                                                          (context, index) {
-                                                        return TableRow(
-                                                            index: index,
-                                                            length:
-                                                                users.length,
-                                                            user: users[index]);
-                                                      }),
+                                                          //0
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      width: 108.2 * vw,
+                                                      height: 2.1 *
+                                                          vw *
+                                                          users.length,
+                                                      decoration: BoxDecoration(
+                                                        color: Color.fromRGBO(
+                                                            230, 230, 245, 1),
+                                                        borderRadius:
+                                                            BorderRadius.vertical(
+                                                                bottom: Radius
+                                                                    .circular(
+                                                                        0.5 *
+                                                                            vw)),
+                                                      ),
+                                                      child: ListView.builder(
+                                                          itemCount:
+                                                              users.length,
+                                                          itemBuilder:
+                                                              (context, index) {
+                                                            return TableRow(
+                                                                index: index,
+                                                                length: users
+                                                                    .length,
+                                                                user: users[
+                                                                    index]);
+                                                          }),
+                                                    ),
+                                                  ],
                                                 ),
                                               ],
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
-                                      SizedBox(height: 0.5 * vw),
-                                      Container(
-                                        width: 80 * vw,
-                                        height: 1.75 * vw,
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            HoverOver(builder: (hovered) {
-                                              return GestureDetector(
-                                                onTap: () {},
-                                                child: Container(
-                                                    width: 1.75 * vw,
-                                                    height: 1.75 * vw,
-                                                    decoration: BoxDecoration(
-                                                      color: (hovered)
-                                                          ? Color.fromRGBO(
-                                                              52, 155, 112, 1)
-                                                          : Color.fromRGBO(
-                                                              92, 195, 152, 1),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              0.65 * vw),
-                                                    ),
-                                                    child: Icon(
-                                                      Icons
-                                                          .arrow_back_ios_new_rounded,
-                                                      size:
-                                                          MyFont(context).h1(),
-                                                      color: Color.fromRGBO(
-                                                          245, 245, 255, 1),
-                                                    )),
-                                              );
-                                            }),
-                                            SizedBox(width: 1.5 * vw),
-                                            Text(
-                                              '2 / 3',
-                                              style: TextStyle(
-                                                fontSize: MyFont(context).h1(),
-                                                color: Color.fromRGBO(
-                                                    40, 40, 55, 1),
-                                                fontWeight: FontWeight.w400,
-                                              ),
+                                    ),
+                                    SizedBox(height: 0.5 * vw),
+                                    Container(
+                                      width: 80 * vw,
+                                      height: 1.75 * vw,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          HoverOver(builder: (hovered) {
+                                            return GestureDetector(
+                                              onTap: () {},
+                                              child: Container(
+                                                  width: 1.75 * vw,
+                                                  height: 1.75 * vw,
+                                                  decoration: BoxDecoration(
+                                                    color: (hovered)
+                                                        ? Color.fromRGBO(
+                                                            52, 155, 112, 1)
+                                                        : Color.fromRGBO(
+                                                            92, 195, 152, 1),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            0.65 * vw),
+                                                  ),
+                                                  child: Icon(
+                                                    Icons
+                                                        .arrow_back_ios_new_rounded,
+                                                    size: MyFont(context).h1(),
+                                                    color: Color.fromRGBO(
+                                                        245, 245, 255, 1),
+                                                  )),
+                                            );
+                                          }),
+                                          SizedBox(width: 1.5 * vw),
+                                          Text(
+                                            '2 / 3',
+                                            style: TextStyle(
+                                              fontSize: MyFont(context).h1(),
+                                              color:
+                                                  Color.fromRGBO(40, 40, 55, 1),
+                                              fontWeight: FontWeight.w400,
                                             ),
-                                            SizedBox(width: 1.5 * vw),
-                                            HoverOver(builder: (hovered) {
-                                              return GestureDetector(
-                                                onTap: () {},
-                                                child: Container(
-                                                    width: 1.75 * vw,
-                                                    height: 1.75 * vw,
-                                                    decoration: BoxDecoration(
-                                                      color: (hovered)
-                                                          ? Color.fromRGBO(
-                                                              52, 155, 112, 1)
-                                                          : Color.fromRGBO(
-                                                              92, 195, 152, 1),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              0.65 * vw),
-                                                    ),
-                                                    child: Icon(
-                                                      Icons
-                                                          .arrow_forward_ios_rounded,
-                                                      size:
-                                                          MyFont(context).h1(),
-                                                      color: Color.fromRGBO(
-                                                          245, 245, 255, 1),
-                                                    )),
-                                              );
-                                            }),
-                                          ],
-                                        ),
+                                          ),
+                                          SizedBox(width: 1.5 * vw),
+                                          HoverOver(builder: (hovered) {
+                                            return GestureDetector(
+                                              onTap: () {},
+                                              child: Container(
+                                                  width: 1.75 * vw,
+                                                  height: 1.75 * vw,
+                                                  decoration: BoxDecoration(
+                                                    color: (hovered)
+                                                        ? Color.fromRGBO(
+                                                            52, 155, 112, 1)
+                                                        : Color.fromRGBO(
+                                                            92, 195, 152, 1),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            0.65 * vw),
+                                                  ),
+                                                  child: Icon(
+                                                    Icons
+                                                        .arrow_forward_ios_rounded,
+                                                    size: MyFont(context).h1(),
+                                                    color: Color.fromRGBO(
+                                                        245, 245, 255, 1),
+                                                  )),
+                                            );
+                                          }),
+                                        ],
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 );
                               }),
                         ),

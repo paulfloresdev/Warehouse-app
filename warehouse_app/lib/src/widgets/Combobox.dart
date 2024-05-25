@@ -126,7 +126,10 @@ class Combobox {
                       onTap: () {},
                       child: Container(
                           width: width * vw,
-                          height: height * vw * roles.length,
+                          height: (roles.length < 6)
+                              ? height * vw * roles.length
+                              : height * vw * 5,
+                          clipBehavior: Clip.hardEdge,
                           decoration: BoxDecoration(
                             color: Color.fromRGBO(235, 235, 245, 1),
                             borderRadius: BorderRadius.circular(0.65 * vw),

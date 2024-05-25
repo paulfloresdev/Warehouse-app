@@ -14,7 +14,8 @@ import 'package:warehouse_app/src/widgets/sidebar.dart';
 
 late double vw;
 late User user;
-late List<PassValidator> params;
+late List<PassValidator> validators;
+late List<bool> params;
 
 class EditUsersView extends StatefulWidget {
   EditUsersView({super.key, required User user_}) {
@@ -37,6 +38,8 @@ class _EditUsersViewState extends State<EditUsersView> {
   late bool roleOpen;
   late Area area;
   late bool areaOpen;
+  late bool passObscure;
+  late bool passConfirmationObscure;
 
   @override
   void initState() {
@@ -53,6 +56,8 @@ class _EditUsersViewState extends State<EditUsersView> {
     roleOpen = false;
     area = user.getArea();
     areaOpen = false;
+    passObscure = true;
+    passConfirmationObscure = true;
   }
 
   @override
@@ -71,7 +76,8 @@ class _EditUsersViewState extends State<EditUsersView> {
   @override
   Widget build(BuildContext context) {
     vw = Responsive(context).viewportWidth;
-    params = PassValidator(context: context).getParams();
+    validators = PassValidator(context: context).getDescriptions();
+    params = [false, false, false, false, false, false, false, false];
 
     return Scaffold(
       body: Row(
@@ -83,7 +89,7 @@ class _EditUsersViewState extends State<EditUsersView> {
             child: ListView(children: [
               Container(
                 width: 80 * vw,
-                height: 50 * vw,
+                height: 48.75 * vw,
                 margin: EdgeInsets.only(
                   left: 2.5 * vw,
                   right: 2.5 * vw,
@@ -130,7 +136,7 @@ class _EditUsersViewState extends State<EditUsersView> {
                           children: [
                             Container(
                               width: 39 * vw,
-                              height: 33 * vw,
+                              height: 40 * vw,
                               child: Stack(
                                 children: [
                                   Column(
@@ -164,29 +170,24 @@ class _EditUsersViewState extends State<EditUsersView> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Input(
-                                                    controller: nameController,
-                                                    label: 'Name',
-                                                    caracters: 24,
-                                                    regExp:
-                                                        RegExp(r'[A-Za-z ]'),
-                                                    width: 18.5,
-                                                    caseType: 1,
-                                                    keyboardType:
-                                                        TextInputType.name)
-                                                .build(context),
-                                            Input(
-                                                    controller:
-                                                        lastnameController,
-                                                    label: 'Lastname',
-                                                    caracters: 16,
-                                                    regExp:
-                                                        RegExp(r'[A-Za-z ]'),
-                                                    width: 18.5,
-                                                    caseType: 1,
-                                                    keyboardType:
-                                                        TextInputType.name)
-                                                .build(context),
+                                            Input(context).text(
+                                              controller: nameController,
+                                              label: 'Name',
+                                              caracters: 24,
+                                              regExp: RegExp(r'[A-Za-z ]'),
+                                              width: 18.5,
+                                              caseType: 1,
+                                              keyboardType: TextInputType.name,
+                                            ),
+                                            Input(context).text(
+                                              controller: lastnameController,
+                                              label: 'Lastname',
+                                              caracters: 16,
+                                              regExp: RegExp(r'[A-Za-z ]'),
+                                              width: 18.5,
+                                              caseType: 1,
+                                              keyboardType: TextInputType.name,
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -198,29 +199,25 @@ class _EditUsersViewState extends State<EditUsersView> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Input(
-                                                    controller: curpController,
-                                                    label: 'CURP',
-                                                    caracters: 18,
-                                                    regExp:
-                                                        RegExp(r'[A-Za-z0-9 ]'),
-                                                    width: 18.5,
-                                                    caseType: 1,
-                                                    keyboardType:
-                                                        TextInputType.text)
-                                                .build(context),
-                                            Input(
-                                                    controller:
-                                                        usernameController,
-                                                    label: 'Username',
-                                                    caracters: 24,
-                                                    regExp: RegExp(
-                                                        r'[A-Za-z0-9.@_ ]'),
-                                                    width: 18.5,
-                                                    caseType: 0,
-                                                    keyboardType:
-                                                        TextInputType.text)
-                                                .build(context),
+                                            Input(context).text(
+                                              controller: curpController,
+                                              label: 'CURP',
+                                              caracters: 18,
+                                              regExp: RegExp(r'[A-Za-z0-9 ]'),
+                                              width: 18.5,
+                                              caseType: 1,
+                                              keyboardType: TextInputType.text,
+                                            ),
+                                            Input(context).text(
+                                              controller: usernameController,
+                                              label: 'Username',
+                                              caracters: 24,
+                                              regExp:
+                                                  RegExp(r'[A-Za-z0-9.@_ ]'),
+                                              width: 18.5,
+                                              caseType: 0,
+                                              keyboardType: TextInputType.text,
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -232,21 +229,20 @@ class _EditUsersViewState extends State<EditUsersView> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Input(
-                                                    controller: emailController,
-                                                    label: 'Email',
-                                                    caracters: 48,
-                                                    regExp: RegExp(
-                                                        r'[A-Za-z0-9@._]'),
-                                                    width: 18.5,
-                                                    caseType: 0,
-                                                    keyboardType: TextInputType
-                                                        .emailAddress)
-                                                .build(context),
+                                            Input(context).text(
+                                              controller: emailController,
+                                              label: 'Email',
+                                              caracters: 48,
+                                              regExp: RegExp(r'[A-Za-z0-9@._]'),
+                                              width: 18.5,
+                                              caseType: 0,
+                                              keyboardType:
+                                                  TextInputType.emailAddress,
+                                            ),
                                           ],
                                         ),
                                       ),
-                                      SizedBox(height: 8.25 * vw),
+                                      SizedBox(height: 9 * vw),
                                       Container(
                                         width: 39 * vw,
                                         height: 2.5 * vw,
@@ -254,33 +250,30 @@ class _EditUsersViewState extends State<EditUsersView> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
-                                            CustomButtom(context).withIcon(
-                                              size: Size(12, 2.5),
-                                              padding:
-                                                  EdgeInsets.all(0.65 * vw),
+                                            CustomButtom(context).regular(
+                                              size: Size(7.5, 2.5),
+                                              padding: EdgeInsets.zero,
                                               backgroundColor: Color.fromRGBO(
                                                   92, 195, 152, 1),
                                               textColor: Color.fromRGBO(
                                                   245, 245, 255, 1),
-                                              textSize: MyFont(context).h2(),
+                                              textSize: MyFont(context).h1(),
                                               onTap: () {},
                                               label: 'Save',
                                               icon: Icons.save,
                                             ),
-                                            SizedBox(width: 2 * vw),
-                                            CustomButtom(context).withIcon(
-                                              size: Size(12, 2.5),
-                                              padding:
-                                                  EdgeInsets.all(0.65 * vw),
+                                            SizedBox(width: 0.675 * vw),
+                                            CustomButtom(context).onlyIcon(
+                                              size: Size(3.175, 2.5),
+                                              padding: EdgeInsets.zero,
                                               backgroundColor: Color.fromRGBO(
                                                   250, 83, 103, 1),
-                                              textColor: Color.fromRGBO(
+                                              iconColor: Color.fromRGBO(
                                                   245, 245, 255, 1),
-                                              textSize: MyFont(context).h2(),
+                                              iconSize: 1.35 * vw,
                                               onTap: () {},
-                                              label: 'Remove',
-                                              icon: Icons.person_remove,
-                                            )
+                                              icon: Icons.delete,
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -362,12 +355,12 @@ class _EditUsersViewState extends State<EditUsersView> {
                             ),
                             Container(
                               width: 0.25 * vw,
-                              height: 33 * vw,
+                              height: 40 * vw,
                               color: Color.fromRGBO(235, 235, 245, 1),
                             ),
                             Container(
                                 width: 39 * vw,
-                                height: 33 * vw,
+                                height: 40 * vw,
                                 child: Column(
                                   children: [
                                     Row(
@@ -378,7 +371,7 @@ class _EditUsersViewState extends State<EditUsersView> {
                                           height: 2.5 * vw,
                                         ),
                                         Text(
-                                          "Password",
+                                          "Security",
                                           style: TextStyle(
                                             fontSize: MyFont(context).h2(),
                                             color: Color.fromRGBO(
@@ -399,72 +392,153 @@ class _EditUsersViewState extends State<EditUsersView> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Input(
-                                                  controller:
-                                                      passwordController,
-                                                  label: 'Password',
-                                                  caracters: 48,
-                                                  regExp: RegExp(
-                                                      r'[ A-Za-z0-9@._$#!¡?¿%&/+*;:-]'),
-                                                  width: 18.5,
-                                                  caseType: 0,
-                                                  keyboardType: TextInputType
-                                                      .visiblePassword)
-                                              .build(context),
-                                          Input(
-                                                  controller:
-                                                      confirmPasswordController,
-                                                  label: 'Confirm Password',
-                                                  caracters: 48,
-                                                  regExp: RegExp(
-                                                      r'[ A-Za-z0-9@._$#!¡?¿%&/+*;:-]'),
-                                                  width: 18.5,
-                                                  caseType: 0,
-                                                  keyboardType: TextInputType
-                                                      .visiblePassword)
-                                              .build(context),
+                                          Input(context).password(
+                                            onChanged: (c) {
+                                              setState(() {
+                                                print(c.text);
+                                                passwordController = c;
+                                              });
+                                            },
+                                            controller: passwordController,
+                                            changeObscure: (ob) {
+                                              setState(() {
+                                                passObscure = ob;
+                                              });
+                                            },
+                                            obscureText: passObscure,
+                                            label: 'Password',
+                                            caracters: 48,
+                                            regExp: RegExp(
+                                                r'[ A-Za-z0-9@._$#!¡?¿%&/+*;:-]'),
+                                            width: 18.5,
+                                            caseType: 4,
+                                          ),
+                                          Input(context).password(
+                                            onChanged: (c) {
+                                              setState(() {
+                                                print(c.text);
+                                                confirmPasswordController = c;
+                                              });
+                                            },
+                                            controller:
+                                                confirmPasswordController,
+                                            changeObscure: (ob) {
+                                              setState(() {
+                                                passConfirmationObscure = ob;
+                                              });
+                                            },
+                                            obscureText:
+                                                passConfirmationObscure,
+                                            label: 'Confirm Password',
+                                            caracters: 48,
+                                            regExp: RegExp(
+                                                r'[ A-Za-z0-9@._$#!¡?¿%&/+*;:-]'),
+                                            width: 18.5,
+                                            caseType: 4,
+                                          ),
                                         ],
                                       ),
                                     ),
                                     SizedBox(height: 1.5 * vw),
-                                    params[0].widget(
+                                    validators[0].widget(
                                       size: Size(39, 1.25),
                                       textSize: MyFont(context).h1(),
+                                      condition: PassValidator(context: context)
+                                          .getParams(
+                                        index: 0,
+                                        c1: passwordController,
+                                        c2: confirmPasswordController,
+                                      ),
                                     ),
                                     SizedBox(height: 1 * vw),
-                                    params[1].widget(
+                                    validators[1].widget(
                                       size: Size(39, 1.25),
                                       textSize: MyFont(context).h1(),
+                                      condition: PassValidator(context: context)
+                                          .getParams(
+                                        index: 1,
+                                        c1: passwordController,
+                                        c2: confirmPasswordController,
+                                      ),
                                     ),
                                     SizedBox(height: 1 * vw),
-                                    params[2].widget(
+                                    validators[2].widget(
                                       size: Size(39, 1.25),
                                       textSize: MyFont(context).h1(),
+                                      condition: PassValidator(context: context)
+                                          .getParams(
+                                        index: 2,
+                                        c1: passwordController,
+                                        c2: confirmPasswordController,
+                                      ),
                                     ),
                                     SizedBox(height: 1 * vw),
-                                    params[3].widget(
+                                    validators[3].widget(
                                       size: Size(39, 1.25),
                                       textSize: MyFont(context).h1(),
+                                      condition: PassValidator(context: context)
+                                          .getParams(
+                                        index: 3,
+                                        c1: passwordController,
+                                        c2: confirmPasswordController,
+                                      ),
                                     ),
                                     SizedBox(height: 1 * vw),
-                                    params[4].widget(
+                                    validators[4].widget(
                                       size: Size(39, 1.25),
                                       textSize: MyFont(context).h1(),
+                                      condition: PassValidator(context: context)
+                                          .getParams(
+                                        index: 4,
+                                        c1: passwordController,
+                                        c2: confirmPasswordController,
+                                      ),
                                     ),
                                     SizedBox(height: 1 * vw),
-                                    params[5].widget(
+                                    validators[5].widget(
                                       size: Size(39, 1.25),
                                       textSize: MyFont(context).h1(),
+                                      condition: PassValidator(context: context)
+                                          .getParams(
+                                        index: 5,
+                                        c1: passwordController,
+                                        c2: confirmPasswordController,
+                                      ),
                                     ),
                                     SizedBox(height: 1 * vw),
-                                    params[6].widget(
+                                    validators[6].widget(
                                       size: Size(39, 1.25),
                                       textSize: MyFont(context).h1(),
+                                      condition: PassValidator(context: context)
+                                          .getParams(
+                                        index: 6,
+                                        c1: passwordController,
+                                        c2: confirmPasswordController,
+                                      ),
                                     ),
                                     SizedBox(height: 1 * vw),
-                                    params[7].widget(
+                                    validators[7].widget(
                                       size: Size(39, 1.25),
                                       textSize: MyFont(context).h1(),
+                                      condition: PassValidator(context: context)
+                                          .getParams(
+                                        index: 7,
+                                        c1: passwordController,
+                                        c2: confirmPasswordController,
+                                      ),
+                                    ),
+                                    SizedBox(height: 2 * vw),
+                                    CustomButtom(context).regular(
+                                      size: Size(10, 2.5),
+                                      padding: EdgeInsets.zero,
+                                      backgroundColor:
+                                          Color.fromRGBO(92, 195, 152, 1),
+                                      textColor:
+                                          Color.fromRGBO(245, 245, 255, 1),
+                                      textSize: MyFont(context).h1(),
+                                      onTap: () {},
+                                      label: 'Update password',
+                                      icon: Icons.save,
                                     ),
                                   ],
                                 )),
