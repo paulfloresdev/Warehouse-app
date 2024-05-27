@@ -8,6 +8,7 @@ import 'package:warehouse_app/src/models/Auxiliars/Router.dart';
 import 'package:warehouse_app/src/models/Themes/MyFont.dart';
 import 'package:warehouse_app/src/views/home/homepage_view.dart';
 import 'package:warehouse_app/src/views/users/users_view.dart';
+import 'package:warehouse_app/src/views/warehouse/find_asset_view.dart';
 
 late int page;
 late int selected;
@@ -57,7 +58,7 @@ class _SideBarState extends State<SideBar> {
                         a: 1,
                         b: 4,
                         label: 'Find Asset',
-                        destination: HomePageView()),
+                        destination: FindAssetView()),
                     suboption(
                         index: 2,
                         a: 1,

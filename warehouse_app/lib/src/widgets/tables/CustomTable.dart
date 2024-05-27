@@ -6,11 +6,11 @@ import 'package:warehouse_app/src/models/Themes/MyFont.dart';
 import 'package:warehouse_app/src/models/User.dart';
 import 'package:warehouse_app/src/views/users/edit_users_view.dart';
 
-class UserTable {
+class CustomTable {
   late BuildContext context;
   late double vw;
 
-  UserTable(this.context) {
+  CustomTable(this.context) {
     vw = Responsive(context).viewportWidth;
   }
 

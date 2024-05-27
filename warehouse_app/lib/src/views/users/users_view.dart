@@ -10,7 +10,7 @@ import 'package:warehouse_app/src/widgets/Combobox.dart';
 import 'package:warehouse_app/src/widgets/Input.dart';
 import 'package:warehouse_app/src/widgets/sidebar.dart';
 import 'package:warehouse_app/src/widgets/tables/RowAlignment.dart';
-import 'package:warehouse_app/src/widgets/tables/UserTable.dart';
+import 'package:warehouse_app/src/widgets/tables/CustomTable.dart';
 
 late double vw;
 
@@ -274,7 +274,7 @@ class _UsersViewState extends State<UsersView> {
                                                                 .center,
                                                         children: [
                                                           //79.3
-                                                          UserTable(context)
+                                                          CustomTable(context)
                                                               .textRow(
                                                             size: Size(8, 2.5),
                                                             rowAlignment:
@@ -288,12 +288,12 @@ class _UsersViewState extends State<UsersView> {
                                                                     245,
                                                                     1),
                                                             textStyle:
-                                                                UserTable(
+                                                                CustomTable(
                                                                         context)
                                                                     .header,
                                                             label: '',
                                                           ),
-                                                          UserTable(context)
+                                                          CustomTable(context)
                                                               .textRow(
                                                             size: Size(18, 2.5),
                                                             rowAlignment:
@@ -307,13 +307,13 @@ class _UsersViewState extends State<UsersView> {
                                                                     245,
                                                                     1),
                                                             textStyle:
-                                                                UserTable(
+                                                                CustomTable(
                                                                         context)
                                                                     .header,
                                                             label: 'Name',
                                                           ),
                                                           //61.3
-                                                          UserTable(context)
+                                                          CustomTable(context)
                                                               .textRow(
                                                             size:
                                                                 Size(14.3, 2.5),
@@ -328,13 +328,13 @@ class _UsersViewState extends State<UsersView> {
                                                                     245,
                                                                     1),
                                                             textStyle:
-                                                                UserTable(
+                                                                CustomTable(
                                                                         context)
                                                                     .header,
                                                             label: 'Lastname',
                                                           ),
                                                           //47
-                                                          UserTable(context)
+                                                          CustomTable(context)
                                                               .textRow(
                                                             size: Size(14, 2.5),
                                                             rowAlignment:
@@ -348,12 +348,12 @@ class _UsersViewState extends State<UsersView> {
                                                                     245,
                                                                     1),
                                                             textStyle:
-                                                                UserTable(
+                                                                CustomTable(
                                                                         context)
                                                                     .header,
                                                             label: 'Area',
                                                           ),
-                                                          UserTable(context)
+                                                          CustomTable(context)
                                                               .textRow(
                                                             size: Size(9, 2.5),
                                                             rowAlignment:
@@ -367,13 +367,13 @@ class _UsersViewState extends State<UsersView> {
                                                                     245,
                                                                     1),
                                                             textStyle:
-                                                                UserTable(
+                                                                CustomTable(
                                                                         context)
                                                                     .header,
                                                             label: 'Role',
                                                           ),
                                                           //38
-                                                          UserTable(context)
+                                                          CustomTable(context)
                                                               .textRow(
                                                             size: Size(16, 2.5),
                                                             rowAlignment:
@@ -387,13 +387,13 @@ class _UsersViewState extends State<UsersView> {
                                                                     245,
                                                                     1),
                                                             textStyle:
-                                                                UserTable(
+                                                                CustomTable(
                                                                         context)
                                                                     .header,
                                                             label: 'CURP',
                                                           ),
                                                           //22
-                                                          UserTable(context)
+                                                          CustomTable(context)
                                                               .textRow(
                                                             size: Size(14, 2.5),
                                                             rowAlignment:
@@ -407,12 +407,12 @@ class _UsersViewState extends State<UsersView> {
                                                                     245,
                                                                     1),
                                                             textStyle:
-                                                                UserTable(
+                                                                CustomTable(
                                                                         context)
                                                                     .header,
                                                             label: 'Email',
                                                           ),
-                                                          UserTable(context)
+                                                          CustomTable(context)
                                                               .textRow(
                                                             size: Size(14, 2.5),
                                                             rowAlignment:
@@ -426,7 +426,7 @@ class _UsersViewState extends State<UsersView> {
                                                                     245,
                                                                     1),
                                                             textStyle:
-                                                                UserTable(
+                                                                CustomTable(
                                                                         context)
                                                                     .header,
                                                             label: 'Username',
@@ -675,66 +675,66 @@ class _UsersViewState extends State<UsersView> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          UserTable(context).buttonRow(
+          CustomTable(context).buttonRow(
             size: Size(8, 2),
             rowAlignment: (index == length - 1)
                 ? RowAlignment(context).bottomLeft
                 : RowAlignment(context).center,
             color: Color.fromRGBO(255, 255, 255, 1),
-            textStyle: UserTable(context).row,
+            textStyle: CustomTable(context).row,
             user: user,
           ),
-          UserTable(context).textRow(
+          CustomTable(context).textRow(
             size: Size(18, 2),
             rowAlignment: RowAlignment(context).center,
             color: Color.fromRGBO(255, 255, 255, 1),
-            textStyle: UserTable(context).row,
+            textStyle: CustomTable(context).row,
             label: user.getName(),
           ),
-          UserTable(context).textRow(
+          CustomTable(context).textRow(
             size: Size(14.3, 2),
             rowAlignment: RowAlignment(context).center,
             color: Color.fromRGBO(255, 255, 255, 1),
-            textStyle: UserTable(context).row,
+            textStyle: CustomTable(context).row,
             label: user.getLastname(),
           ),
-          UserTable(context).textRow(
+          CustomTable(context).textRow(
             size: Size(14, 2),
             rowAlignment: RowAlignment(context).center,
             color: Color.fromRGBO(255, 255, 255, 1),
-            textStyle: UserTable(context).row,
+            textStyle: CustomTable(context).row,
             label: user.getArea().getName(),
           ),
-          UserTable(context).textRow(
+          CustomTable(context).textRow(
             size: Size(9, 2),
             rowAlignment: RowAlignment(context).center,
             color: Color.fromRGBO(255, 255, 255, 1),
-            textStyle: UserTable(context).row,
+            textStyle: CustomTable(context).row,
             label: user.getRole().getName(),
           ),
-          UserTable(context).textRow(
+          CustomTable(context).textRow(
             size: Size(16, 2),
             rowAlignment: RowAlignment(context).center,
             color: Color.fromRGBO(255, 255, 255, 1),
-            textStyle: UserTable(context).row,
+            textStyle: CustomTable(context).row,
             label: user.getCURP(),
           ),
-          UserTable(context).textRow(
+          CustomTable(context).textRow(
             size: Size(14, 2),
             rowAlignment: (index == length - 1)
                 ? RowAlignment(context).bottomRight
                 : RowAlignment(context).center,
             color: Color.fromRGBO(255, 255, 255, 1),
-            textStyle: UserTable(context).row,
+            textStyle: CustomTable(context).row,
             label: user.email,
           ),
-          UserTable(context).textRow(
+          CustomTable(context).textRow(
             size: Size(14, 2),
             rowAlignment: (index == length - 1)
                 ? RowAlignment(context).bottomRight
                 : RowAlignment(context).center,
             color: Color.fromRGBO(255, 255, 255, 1),
-            textStyle: UserTable(context).row,
+            textStyle: CustomTable(context).row,
             label: user.getUsername(),
           ),
         ],

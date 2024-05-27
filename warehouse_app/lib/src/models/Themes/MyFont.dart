@@ -9,7 +9,7 @@ class MyFont {
   }
 
   double h1() {
-    return 0.8 * vw;
+    return 0.85 * vw;
   }
 
   double h2() {
