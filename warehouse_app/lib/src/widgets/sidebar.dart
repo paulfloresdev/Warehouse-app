@@ -6,9 +6,9 @@ import 'package:warehouse_app/src/models/Auxiliars/Responsive.dart';
 
 import 'package:warehouse_app/src/models/Auxiliars/Router.dart';
 import 'package:warehouse_app/src/models/Themes/MyFont.dart';
+import 'package:warehouse_app/src/views/assets/find_asset_view.dart';
 import 'package:warehouse_app/src/views/home/homepage_view.dart';
 import 'package:warehouse_app/src/views/users/users_view.dart';
-import 'package:warehouse_app/src/views/warehouse/find_asset_view.dart';
 
 late int page;
 late int selected;
@@ -50,20 +50,20 @@ class _SideBarState extends State<SideBar> {
                     option(
                       a: 1,
                       b: 4,
-                      label: 'Assets',
+                      label: 'Warehouse',
                       action: () => changeSelected(1),
                     ),
                     suboption(
                         index: 1,
                         a: 1,
                         b: 4,
-                        label: 'Find Asset',
+                        label: 'Assets',
                         destination: FindAssetView()),
                     suboption(
                         index: 2,
                         a: 1,
                         b: 4,
-                        label: 'Racks',
+                        label: 'Locations',
                         destination: HomePageView()),
                     suboption(
                         index: 3,

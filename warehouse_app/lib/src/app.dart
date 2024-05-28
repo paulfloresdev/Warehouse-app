@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:warehouse_app/src/models/User.dart';
-import 'package:warehouse_app/src/views/users/edit_users_view.dart';
+import 'package:warehouse_app/src/views/assets/find_asset_view.dart';
 import 'package:warehouse_app/src/views/users/users_view.dart';
 
 class MyApp extends StatelessWidget {
@@ -27,10 +26,11 @@ class MyApp extends StatelessWidget {
           //
           // This works for code too, not just values: Most code changes can be
           // tested with just a hot reload.
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          colorScheme:
+              ColorScheme.fromSeed(seedColor: Color.fromRGBO(161, 226, 199, 1)),
           useMaterial3: true,
           fontFamily: 'Inter'),
-      home: UsersView(), //EditUsersView(user_: User().one),
+      home: FindAssetView(), //EditUsersView(user_: User().one),
     );
   }
 }
