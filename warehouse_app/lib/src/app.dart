@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:warehouse_app/src/views/assets/find_asset_view.dart';
+import 'package:warehouse_app/src/views/auth/login_view.dart';
 import 'package:warehouse_app/src/views/users/users_view.dart';
 
 class MyApp extends StatelessWidget {
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
               ColorScheme.fromSeed(seedColor: Color.fromRGBO(161, 226, 199, 1)),
           useMaterial3: true,
           fontFamily: 'Inter'),
-      home: FindAssetView(), //EditUsersView(user_: User().one),
+      home: LoginView(), //EditUsersView(user_: User().one),
     );
   }
 }
