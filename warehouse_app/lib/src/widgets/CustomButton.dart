@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:hoverover/hoverover.dart';
 import 'package:warehouse_app/src/models/Auxiliars/Responsive.dart';
 
-class CustomButtom {
+class CustomButton {
   late BuildContext context;
   late double vw;
 
-  CustomButtom(this.context) {
+  CustomButton(this.context) {
     vw = Responsive(context).viewportWidth;
   }
 

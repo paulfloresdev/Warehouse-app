@@ -250,7 +250,7 @@ class _EditUsersViewState extends State<EditUsersView> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
-                                            CustomButtom(context).regular(
+                                            CustomButton(context).regular(
                                               size: Size(7.5, 2.5),
                                               padding: EdgeInsets.zero,
                                               backgroundColor: Color.fromRGBO(
@@ -263,7 +263,7 @@ class _EditUsersViewState extends State<EditUsersView> {
                                               icon: Icons.save,
                                             ),
                                             SizedBox(width: 0.675 * vw),
-                                            CustomButtom(context).onlyIcon(
+                                            CustomButton(context).onlyIcon(
                                               size: Size(3.175, 2.5),
                                               padding: EdgeInsets.zero,
                                               backgroundColor: Color.fromRGBO(
@@ -528,7 +528,7 @@ class _EditUsersViewState extends State<EditUsersView> {
                                       ),
                                     ),
                                     SizedBox(height: 2 * vw),
-                                    CustomButtom(context).regular(
+                                    CustomButton(context).regular(
                                       size: Size(10, 2.5),
                                       padding: EdgeInsets.zero,
                                       backgroundColor:
